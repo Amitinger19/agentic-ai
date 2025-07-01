@@ -7,7 +7,7 @@ class data_loader:
   def __init__(self):
     pass
 
-  def load_data(self, file_path:str): -> str:
+  def load_data(self, file_path:str):
     """
     This function loads the text from the pdf file.
     """
@@ -29,15 +29,25 @@ class data_splitter:
     data_load = data_loader()
     try:
       splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=10)
-      docs = data_load.load(file_path)
+      docs = data_load.load_data(file_path)
       split_docs = splitter.split_documents(docs)
       return split_docs
 
     except Exception as e:
       print(f"Something went wrong: {e}")
-      
 
+class create_embeddings:
+  def __init__(self):
+    pass
 
+  def get_embedding_model(self):
+    pass
+
+  def get_embeddings(self, text:str):
+    """
+    This function create embeddings for the given text
+    """
+    pass
 
 
 
