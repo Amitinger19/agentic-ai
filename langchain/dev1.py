@@ -49,9 +49,33 @@ class create_embeddings:
     """
     pass
 
+class database_operations:
+  def __init__(self):
+    pass
 
+  def load_db(self,config=None):
+    """
+    Load the database client.
+    """
+    pass
 
+  def read_data(self):
+    """
+    Loads the data.
+    """
+    pass
 
+  def load_data_into_db(self):
+    """
+    Upload the data into DB.
+    """
+    pass
+
+  def delete(self):
+    """
+    Deletes data.
+    """
+    pass
 
 
 
