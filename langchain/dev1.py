@@ -1,5 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
 
 FILE_PATH = "/content/drive/MyDrive/Colab/langchain/Data/cv.pdf"
 
@@ -29,34 +30,39 @@ class data_splitter:
     data_load = data_loader()
     try:
       splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=10)
-      docs = data_load.load_data(file_path)
+      docs = data_load.load(file_path)
       split_docs = splitter.split_documents(docs)
       return split_docs
 
     except Exception as e:
       print(f"Something went wrong: {e}")
 
-class create_embeddings:
+
+class embeddings_db:
   def __init__(self):
     pass
 
-  def get_embedding_model(self):
-    pass
-
-  def get_embeddings(self, text:str):
+  def ollama_embedding_db(self, text_documents, ollama_emb_ins):
     """
-    This function create embeddings for the given text
+    This function creates embedding of documents using Ollama.
     """
-    pass
+    try:
+      self.vectordb = Chroma.from_documents(text_documents, ollama_emb_ins):
+      return self.vectordb
+    except Exception as e:
+      print(f"Something went wrong: {e}")
 
 
+class retriever:
+  def __init__(self, top_k:int):
+    self.k = top_k
 
-
-
-
-
-
-
-
-
-
+  def get_similar_docs(self, query:str):
+    """
+    This functions retrievs the top_k documents.
+    """
+    try:
+      results = vectordb.similarity_search(query=query, k=self.k)
+      return [r.page_content for r in results]
+    except Exception as e:
+      print(f"Something went wrong: {e}")
