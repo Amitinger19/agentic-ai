@@ -3,3 +3,5 @@ langchain_community
 pypdf
 chromadb
 langchain-ollama
+langchain-google-genai
+langchain-chroma
